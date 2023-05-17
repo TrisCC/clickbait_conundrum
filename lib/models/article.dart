@@ -4,11 +4,12 @@ class Article {
   final int id;
   final String title;
   final String? text;
-  final String source;
-  final String url;
+  final String? source;
+  final String? url;
   final String? imageUrl;
+  final bool isFake;
 
-  Article(this.id, this.title, this.text, this.source, this.url, this.imageUrl);
+  Article(this.id, this.title, this.text, this.source, this.url, this.imageUrl, this.isFake);
 
   static List<Article> csvToArticleList(String data) {
     List<Article> articles = [];
