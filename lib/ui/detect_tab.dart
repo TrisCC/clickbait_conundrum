@@ -1,5 +1,6 @@
 import 'package:clickbait_conondrum/bloc/game_bloc.dart';
 import 'package:clickbait_conondrum/models/article.dart';
+import 'package:clickbait_conondrum/ui/full_article_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
@@ -30,6 +31,21 @@ class DetectTab extends StatelessWidget {
           return SafeArea(
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Level: ${state.level.levelNumber}',
+                          style: Theme.of(context).textTheme.titleMedium),
+                      Text(
+                          'Percentage of fake news: ${state.level.percentage}%',
+                          style: Theme.of(context).textTheme.titleSmall)
+                    ],
+                  ),
+                ),
                 GridView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     shrinkWrap: true,
@@ -60,9 +76,21 @@ class DetectTab extends StatelessWidget {
                     }),
                 Expanded(
                   child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      const Center(
-                        child: Text('No more articles!'),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(32.0),
+                            child: Text('Did you guess correctly?'),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Show answers'),
+                          )
+                        ],
                       ),
                       SafeArea(
                         child: CardSwiper(
@@ -133,8 +161,15 @@ class ArticleCard extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50), // NEW
                   ),
-                  onPressed: () {},
-                  child: Text("Read full article"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              FullArticleScreen(article: article)),
+                    );
+                  },
+                  child: const Text('Read full article'),
                 )
               ],
             ),

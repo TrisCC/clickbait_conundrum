@@ -19,29 +19,44 @@ class LevelSelectionTab extends StatelessWidget {
           );
         }
 
-        return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4),
-            itemCount: state.levels.length,
-            itemBuilder: (context, index) {
-              return Card(
-                elevation: 2,
-                child: InkWell(
-                  onTap: () => BlocProvider.of<GameBloc>(context).add(
-                      GameSelectLevel(GameLevel(state.levels[index].percentage,
-                          state.levels[index].levelNumber))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('${state.levels[index].percentage}% fake'),
-                      Text(
-                          'Level ${state.levels[index].levelNumber.toString()}'),
-                    ],
-                  ),
-                ),
-              );
-            });
+        return SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text('Level selection',
+                    style: Theme.of(context).textTheme.titleLarge),
+              ),
+              Expanded(
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4),
+                    itemCount: state.levels.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 2,
+                        child: InkWell(
+                          onTap: () => BlocProvider.of<GameBloc>(context).add(
+                              GameSelectLevel(GameLevel(
+                                  state.levels[index].percentage,
+                                  state.levels[index].levelNumber))),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('${state.levels[index].percentage}% fake'),
+                              Text(
+                                  'Level ${state.levels[index].levelNumber.toString()}'),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ],
+          ),
+        );
       },
     );
   }
