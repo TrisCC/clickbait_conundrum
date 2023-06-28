@@ -55,9 +55,25 @@ class DetectTab extends StatelessWidget {
                       crossAxisCount: 10),
                   itemCount: state.articleList.length,
                   itemBuilder: (context, index) {
-                    return const Center(
-                      child: Icon(Icons.done),
-                    );
+                    if (index > state.articleIsRealList.length - 1) {
+                      return const Center(
+                        child: Icon(
+                          Icons.help,
+                          color: Colors.grey,
+                        ),
+                      );
+                    } else {
+                      return Center(
+                        child: Icon(
+                          state.articleIsRealList[index]
+                              ? Icons.check_circle
+                              : Icons.cancel,
+                          color: state.articleIsRealList[index]
+                              ? Colors.green
+                              : Colors.red,
+                        ),
+                      );
+                    }
                   })
             ],
           );
