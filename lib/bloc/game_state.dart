@@ -2,7 +2,7 @@ part of 'game_bloc.dart';
 
 @immutable
 abstract class GameState {
-  final List<Level> levels;
+  final List<GameLevel> levels;
 
   const GameState(this.levels);
 }
@@ -12,15 +12,15 @@ class GameInitial extends GameState {
 }
 
 class GameLevelSelection extends GameState {
-  GameLevelSelection(List<Level> levels) : super(levels);
+  GameLevelSelection(List<GameLevel> levels) : super(levels);
 }
 
 class GameStarted extends GameState {
-  final Level level;
+  final GameLevel level;
   final List<Article> articleList;
   final List<bool> articleIsRealList;
 
-  GameStarted(
-      this.level, this.articleList, this.articleIsRealList, List<Level> levels)
+  GameStarted(this.level, this.articleList, this.articleIsRealList,
+      List<GameLevel> levels)
       : super(levels);
 }

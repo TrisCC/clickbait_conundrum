@@ -22,7 +22,7 @@ class Article {
 
     for (int i = 1; i < rawList.length - 1; i++) {
       articles.add(Article(rawList[i][0], rawList[i][1], rawList[i][2], null,
-          null, null, rawList[i][3]));
+          null, null, rawList[i][3] == 0));
     }
 
     return articles;

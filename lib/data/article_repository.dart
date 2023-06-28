@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import '../models/models.dart';
 
 class ArticleRepository {
-  Future<List<Article>> getArticles(Level selectedLevel) async {
+  Future<List<Article>> getArticles(GameLevel selectedLevel) async {
     final rawData = await rootBundle.loadString(
         'assets/level_data/percentage_${selectedLevel.percentage}_level_${selectedLevel.levelNumber.toString().padLeft(2, '0')}.csv');
 
@@ -13,7 +13,7 @@ class ArticleRepository {
     return articles;
   }
 
-  Future<List<Level>> getLevels() async {
+  Future<List<GameLevel>> getLevels() async {
     final manifestContent = await rootBundle.loadString('AssetManifest.json');
 
     final Map<String, dynamic> manifestMap = json.decode(manifestContent);
@@ -23,12 +23,12 @@ class ArticleRepository {
         .where((String key) => key.contains('.csv'))
         .toList();
 
-    List<Level> levels = [];
+    List<GameLevel> levels = [];
 
     for (String filePath in files) {
       final split = filePath.split(RegExp(r'[_.]'));
 
-      levels.add(Level(int.parse(split[split.length - 4]),
+      levels.add(GameLevel(int.parse(split[split.length - 4]),
           int.parse(split[split.length - 2])));
     }
 
