@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
           case 0:
             return const LevelSelectionTab();
           case 1:
-            return const DetectTab();
+            return DetectTab();
           case 2:
             return const Text('asdasdasd');
           default:

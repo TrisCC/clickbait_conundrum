@@ -1,6 +1,5 @@
 import 'package:clickbait_conondrum/models/article.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 
 class FullArticleScreen extends StatelessWidget {
   final Article article;

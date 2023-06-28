@@ -1,19 +1,19 @@
 import 'package:clickbait_conondrum/bloc/game_bloc.dart';
 import 'package:clickbait_conondrum/models/article.dart';
 import 'package:clickbait_conondrum/ui/full_article_screen.dart';
+import 'package:clickbait_conondrum/ui/results_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 class DetectTab extends StatelessWidget {
-  const DetectTab({super.key});
+  final CardSwiperController cardSwiperController = CardSwiperController();
+
+  DetectTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<GameBloc, GameState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+    return BlocBuilder<GameBloc, GameState>(
       builder: (context, state) {
         if (state is GameInitial) {
           return const Center(
@@ -87,17 +87,35 @@ class DetectTab extends StatelessWidget {
                             child: Text('Did you guess correctly?'),
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResultsScreen(
+                                          gameLevel: state.level,
+                                          articleIsRealList:
+                                              state.articleIsRealList,
+                                          articleList: state.articleList,
+                                        )),
+                              );
+                            },
                             child: const Text('Show answers'),
                           )
                         ],
                       ),
                       SafeArea(
                         child: CardSwiper(
+                          numberOfCardsDisplayed: 3,
+                          initialIndex: state.articleIsRealList.length <
+                                  state.articleList.length
+                              ? state.articleIsRealList.length
+                              : state.articleIsRealList.length - 1,
+                          controller: cardSwiperController,
                           isLoop: false,
                           cardBuilder: (context, index, percentThresholdX,
                               percentThresholdY) {
                             return ArticleCard(
+                                cardSwiperController: cardSwiperController,
                                 article: state.articleList[index]);
                           },
                           cardsCount: state.articleList.length,
@@ -134,8 +152,10 @@ class DetectTab extends StatelessWidget {
 
 class ArticleCard extends StatelessWidget {
   final Article article;
+  final CardSwiperController cardSwiperController;
 
-  const ArticleCard({super.key, required this.article});
+  const ArticleCard(
+      {super.key, required this.article, required this.cardSwiperController});
 
   @override
   Widget build(BuildContext context) {
@@ -157,19 +177,42 @@ class ArticleCard extends StatelessWidget {
                   overflow: TextOverflow.fade,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50), // NEW
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              FullArticleScreen(article: article)),
-                    );
-                  },
-                  child: const Text('Read full article'),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () => cardSwiperController.swipeLeft(),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red),
+                        child: const Text(
+                          'Fake',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50), // NEW
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    FullArticleScreen(article: article)),
+                          );
+                        },
+                        child: const Text('Read full article'),
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: () => cardSwiperController.swipeRight(),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green),
+                        child: const Text(
+                          'Real',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  ],
                 )
               ],
             ),
