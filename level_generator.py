@@ -50,7 +50,7 @@ def main():
                 # Shuffle level
                 random.shuffle(current_level)
 
-                with open(f"./assets/level_data/percentage_{fake_factor}_level_{level_number}.csv", "w", encoding="utf8") as newlevel:
+                with open(f"./assets/level_data/percentage_{fake_factor}_level_{level_number:02}.csv", "w", encoding="utf8") as newlevel:
                     writer = csv.writer(newlevel)
                     writer.writerow(['', 'title', 'text', 'label'])
                     writer.writerows(current_level)

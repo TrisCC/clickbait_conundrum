@@ -34,6 +34,7 @@ dependencies:
   shared_preferences: ^2.1.1
   flutter_card_swiper: ^6.0.0
   flutter_adaptive_scaffold: ^0.1.5
+  path_provider: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +60,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/data/
+   - assets/level_data/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

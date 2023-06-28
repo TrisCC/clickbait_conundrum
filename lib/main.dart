@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+
+import 'bloc/game_bloc.dart';
+import 'data/article_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,7 +52,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.system,
-      home: const MyHomePage(),
+      home: RepositoryProvider(
+        create: (context) => ArticleRepository(),
+        child: BlocProvider(
+          create: (context) =>
+              GameBloc(RepositoryProvider.of<ArticleRepository>(context))
+                ..add(GameInitialized()),
+          child: const MyHomePage(),
+        ),
+      ),
     );
   }
 }
@@ -85,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: (context) {
         switch (_selectedTab) {
           case 0:
-            return const Text('asdasdasd');
+            return LevelSelectionTab();
           case 1:
             return DetectTab();
           case 2:
@@ -93,6 +105,38 @@ class _MyHomePageState extends State<MyHomePage> {
           default:
             return const Text('Something went wrong');
         }
+      },
+    );
+  }
+}
+
+class LevelSelectionTab extends StatelessWidget {
+  const LevelSelectionTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<GameBloc, GameState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        if (state is GameInitial) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        return Container(
+          child: GridView.builder(
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+              itemCount: state.levels.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Text(state.levels[index].levelNumber.toString()),
+                );
+              }),
+        );
       },
     );
   }
