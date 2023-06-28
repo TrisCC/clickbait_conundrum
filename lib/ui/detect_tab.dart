@@ -27,55 +27,72 @@ class DetectTab extends StatelessWidget {
         }
 
         if (state is GameStarted) {
-          return Column(
-            children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    const Center(
-                      child: Text('No more articles!'),
-                    ),
-                    SafeArea(
-                      child: CardSwiper(
+          return SafeArea(
+            child: Column(
+              children: [
+                GridView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 10),
+                    itemCount: state.articleList.length,
+                    itemBuilder: (context, index) {
+                      if (index > state.articleIsRealList.length - 1) {
+                        return const Center(
+                          child: Icon(
+                            Icons.help,
+                            color: Colors.grey,
+                          ),
+                        );
+                      } else {
+                        return Center(
+                          child: Icon(
+                            state.articleIsRealList[index]
+                                ? Icons.check_circle
+                                : Icons.cancel,
+                            color: state.articleIsRealList[index]
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                        );
+                      }
+                    }),
+                Expanded(
+                  child: Stack(
+                    children: [
+                      const Center(
+                        child: Text('No more articles!'),
+                      ),
+                      SafeArea(
+                        child: CardSwiper(
                           isLoop: false,
                           cardBuilder: (context, index, percentThresholdX,
                               percentThresholdY) {
                             return ArticleCard(
                                 article: state.articleList[index]);
                           },
-                          cardsCount: state.articleList.length),
-                    )
-                  ],
-                ),
-              ),
-              GridView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 10),
-                  itemCount: state.articleList.length,
-                  itemBuilder: (context, index) {
-                    if (index > state.articleIsRealList.length - 1) {
-                      return const Center(
-                        child: Icon(
-                          Icons.help,
-                          color: Colors.grey,
+                          cardsCount: state.articleList.length,
+                          allowedSwipeDirection:
+                              AllowedSwipeDirection.symmetric(horizontal: true),
+                          onSwipe: (previousIndex, currentIndex, direction) {
+                            if (direction == CardSwiperDirection.left) {
+                              BlocProvider.of<GameBloc>(context)
+                                  .add(GameSwipedArticle(false));
+                            } else if (direction == CardSwiperDirection.right) {
+                              BlocProvider.of<GameBloc>(context)
+                                  .add(GameSwipedArticle(true));
+                            }
+
+                            return true;
+                          },
                         ),
-                      );
-                    } else {
-                      return Center(
-                        child: Icon(
-                          state.articleIsRealList[index]
-                              ? Icons.check_circle
-                              : Icons.cancel,
-                          color: state.articleIsRealList[index]
-                              ? Colors.green
-                              : Colors.red,
-                        ),
-                      );
-                    }
-                  })
-            ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           );
         }
 

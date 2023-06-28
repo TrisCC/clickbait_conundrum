@@ -10,3 +10,9 @@ class GameSelectLevel extends GameEvent {
 
   GameSelectLevel(this.level);
 }
+
+class GameSwipedArticle extends GameEvent {
+  final bool isReal;
+
+  GameSwipedArticle(this.isReal);
+}

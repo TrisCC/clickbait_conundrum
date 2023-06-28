@@ -28,5 +28,22 @@ class GameBloc extends Bloc<GameEvent, GameState> {
           const [],
           state.levels));
     });
+
+    on<GameSwipedArticle>(
+      (event, emit) {
+        logger.d(
+            '$tag Player marked article as ${event.isReal ? "real" : "fake"}');
+
+        GameState currentState = state;
+        if (currentState is GameStarted) {
+          List<bool> newArticleIsRealList =
+              List.from(currentState.articleIsRealList);
+          newArticleIsRealList.add(event.isReal);
+
+          emit(GameStarted(currentState.level, currentState.articleList,
+              newArticleIsRealList, currentState.levels));
+        }
+      },
+    );
   }
 }
