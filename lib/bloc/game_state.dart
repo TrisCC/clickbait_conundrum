@@ -12,7 +12,7 @@ class GameInitial extends GameState {
 }
 
 class GameLevelSelection extends GameState {
-  GameLevelSelection(List<GameLevel> levels) : super(levels);
+  const GameLevelSelection(List<GameLevel> levels) : super(levels);
 }
 
 class GameStarted extends GameState {
@@ -20,7 +20,7 @@ class GameStarted extends GameState {
   final List<Article> articleList;
   final List<bool> articleIsRealList;
 
-  GameStarted(this.level, this.articleList, this.articleIsRealList,
+  const GameStarted(this.level, this.articleList, this.articleIsRealList,
       List<GameLevel> levels)
       : super(levels);
 }

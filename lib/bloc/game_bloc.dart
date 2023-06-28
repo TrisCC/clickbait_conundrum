@@ -16,12 +16,12 @@ class GameBloc extends Bloc<GameEvent, GameState> {
 
   GameBloc(this.articleRepository) : super(GameInitial()) {
     on<GameInitialized>((event, emit) async {
-      logger.d("${tag} Game initialized");
+      logger.d('$tag Game initialized');
       emit(GameLevelSelection(await articleRepository.getLevels()));
     });
 
     on<GameSelectLevel>((event, emit) async {
-      logger.d("${TAG} Level selected");
+      logger.d('$tag Level selected');
       emit(GameStarted(
           event.level,
           await articleRepository.getArticles(event.level),
