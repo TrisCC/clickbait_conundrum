@@ -1,12 +1,12 @@
+import 'package:clickbait_conondrum/ui/detect_tab.dart';
+import 'package:clickbait_conondrum/ui/level_selection_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:logger/logger.dart';
 
 import 'bloc/game_bloc.dart';
 import 'data/article_repository.dart';
-import 'models/models.dart';
 
 void main() {
   runApp(const ClickbaitConondrum());
@@ -109,98 +109,6 @@ class _MyHomePageState extends State<MyHomePage> {
           default:
             return const Text('Something went wrong');
         }
-      },
-    );
-  }
-}
-
-class LevelSelectionTab extends StatelessWidget {
-  const LevelSelectionTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<GameBloc, GameState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      builder: (context, state) {
-        if (state is GameInitial) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4),
-            itemCount: state.levels.length,
-            itemBuilder: (context, index) {
-              return Card(
-                elevation: 2,
-                child: InkWell(
-                  onTap: () => BlocProvider.of<GameBloc>(context).add(
-                      GameSelectLevel(GameLevel(state.levels[index].percentage,
-                          state.levels[index].levelNumber))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('${state.levels[index].percentage}% fake'),
-                      Text(state.levels[index].levelNumber.toString()),
-                    ],
-                  ),
-                ),
-              );
-            });
-      },
-    );
-  }
-}
-
-class DetectTab extends StatelessWidget {
-  const DetectTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<GameBloc, GameState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      builder: (context, state) {
-        if (state is GameInitial) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        if (state is GameLevelSelection) {
-          return const Center(
-            child: Text('Select a level in the levels menu'),
-          );
-        }
-
-        if (state is GameStarted) {
-          return Stack(
-            children: [
-              const Center(
-                child: Text('No more articles!'),
-              ),
-              SafeArea(
-                child: CardSwiper(
-                    isLoop: false,
-                    cardBuilder:
-                        (context, index, percentThresholdX, percentThresholdY) {
-                      return Text(state.articleList[index].title);
-                    },
-                    cardsCount: state.articleList.length),
-              )
-            ],
-          );
-        }
-
-        return const Center(
-          child: Text('Error'),
-        );
       },
     );
   }
