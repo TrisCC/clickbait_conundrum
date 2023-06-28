@@ -3,7 +3,7 @@ import 'package:csv/csv.dart';
 class Article {
   final int id;
   final String title;
-  final String? text;
+  final String text;
   final String? source;
   final String? url;
   final String? imageUrl;

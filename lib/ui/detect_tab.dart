@@ -1,4 +1,5 @@
 import 'package:clickbait_conondrum/bloc/game_bloc.dart';
+import 'package:clickbait_conondrum/models/article.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
@@ -36,7 +37,7 @@ class DetectTab extends StatelessWidget {
                     isLoop: false,
                     cardBuilder:
                         (context, index, percentThresholdX, percentThresholdY) {
-                      return Text(state.articleList[index].title);
+                      return ArticleCard(article: state.articleList[index]);
                     },
                     cardsCount: state.articleList.length),
               )
@@ -48,6 +49,48 @@ class DetectTab extends StatelessWidget {
           child: Text('Error'),
         );
       },
+    );
+  }
+}
+
+class ArticleCard extends StatelessWidget {
+  final Article article;
+
+  const ArticleCard({super.key, required this.article});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(children: [
+          Text(
+            article.title,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Expanded(
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Text(
+                  article.text,
+                  overflow: TextOverflow.fade,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.indigo,
+                    minimumSize: const Size.fromHeight(50), // NEW
+                  ),
+                  onPressed: () {},
+                  child: Text("Read full article"),
+                )
+              ],
+            ),
+          )
+        ]),
+      ),
     );
   }
 }
