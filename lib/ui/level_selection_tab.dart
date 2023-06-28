@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LevelSelectionTab extends StatelessWidget {
-  const LevelSelectionTab({super.key});
+  final void Function() onSelectLevel;
+
+  const LevelSelectionTab({super.key, required this.onSelectLevel});
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,13 @@ class LevelSelectionTab extends StatelessWidget {
                       return Card(
                         elevation: 2,
                         child: InkWell(
-                          onTap: () => BlocProvider.of<GameBloc>(context).add(
-                              GameSelectLevel(GameLevel(
-                                  state.levels[index].percentage,
-                                  state.levels[index].levelNumber))),
+                          onTap: () {
+                            BlocProvider.of<GameBloc>(context).add(
+                                GameSelectLevel(GameLevel(
+                                    state.levels[index].percentage,
+                                    state.levels[index].levelNumber)));
+                            onSelectLevel();
+                          },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

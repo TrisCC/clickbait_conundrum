@@ -105,6 +105,8 @@ class DetectTab extends StatelessWidget {
                       ),
                       SafeArea(
                         child: CardSwiper(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           numberOfCardsDisplayed: 3,
                           initialIndex: state.articleIsRealList.length <
                                   state.articleList.length

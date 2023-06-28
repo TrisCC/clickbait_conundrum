@@ -1,7 +1,7 @@
+import 'package:clickbait_conondrum/ui/about_tab.dart';
 import 'package:clickbait_conondrum/ui/detect_tab.dart';
 import 'package:clickbait_conondrum/ui/level_selection_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
@@ -62,54 +62,9 @@ class ClickbaitConondrum extends StatelessWidget {
           create: (context) =>
               GameBloc(RepositoryProvider.of<ArticleRepository>(context))
                 ..add(GameInitialized()),
-          child: const MyHomePage(),
+          child: const HomeScreen(),
         ),
       ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedTab = 1;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AdaptiveScaffold(
-      selectedIndex: _selectedTab,
-      onSelectedIndexChange: (int index) {
-        setState(() {
-          _selectedTab = index;
-        });
-      },
-      destinations: const [
-        NavigationDestination(icon: Icon(Icons.checklist), label: 'Levels'),
-        NavigationDestination(icon: Icon(Icons.newspaper), label: 'Detect'),
-        NavigationDestination(icon: Icon(Icons.settings), label: 'Settings')
-      ],
-      body: (context) {
-        switch (_selectedTab) {
-          case 0:
-            return const LevelSelectionTab();
-          case 1:
-            return DetectTab();
-          case 2:
-            return const Text('asdasdasd');
-          default:
-            return const Text('Something went wrong');
-        }
-      },
     );
   }
 }
