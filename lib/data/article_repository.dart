@@ -1,19 +1,16 @@
 import 'dart:convert';
 
-import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
-import 'dart:io' as io;
-import 'package:path_provider/path_provider.dart';
-
 import '../models/models.dart';
 
 class ArticleRepository {
-  Future<List<Article>> getArticles() async {
-    final rawData = await rootBundle.loadString('assets/WELFake_Dataset.csv');
+  Future<List<Article>> getArticles(Level selectedLevel) async {
+    final rawData = await rootBundle.loadString(
+        'assets/level_data/percentage_${selectedLevel.percentage}_level_${selectedLevel.levelNumber.toString().padLeft(2, '0')}.csv');
 
     List<Article> articles = Article.csvToArticleList(rawData);
 
-    return [articles.first];
+    return articles;
   }
 
   Future<List<Level>> getLevels() async {
@@ -21,13 +18,20 @@ class ArticleRepository {
 
     final Map<String, dynamic> manifestMap = json.decode(manifestContent);
 
-    final files = manifestMap.keys
+    final List<String> files = manifestMap.keys
         .where((String key) => key.contains('level_data/'))
         .where((String key) => key.contains('.csv'))
         .toList();
 
-    print(files);
+    List<Level> levels = [];
 
-    return [Level(10, 1)];
+    for (String filePath in files) {
+      final split = filePath.split(RegExp(r'[_.]'));
+
+      levels.add(Level(int.parse(split[split.length - 4]),
+          int.parse(split[split.length - 2])));
+    }
+
+    return levels;
   }
 }

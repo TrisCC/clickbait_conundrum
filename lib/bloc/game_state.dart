@@ -16,12 +16,11 @@ class GameLevelSelection extends GameState {
 }
 
 class GameStarted extends GameState {
-  final int selectedPercentage;
-  final int selectedLevelNumber;
+  final Level level;
   final List<Article> articleList;
-  final List<bool> articleIsReal;
+  final List<bool> articleIsRealList;
 
-  GameStarted(this.selectedPercentage, this.selectedLevelNumber,
-      this.articleList, this.articleIsReal, List<Level> levels)
+  GameStarted(
+      this.level, this.articleList, this.articleIsRealList, List<Level> levels)
       : super(levels);
 }

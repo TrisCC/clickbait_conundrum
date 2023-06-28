@@ -14,8 +14,12 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       emit(GameLevelSelection(await articleRepository.getLevels()));
     });
 
-    on<GameEvent>((event, emit) {
-      // TODO: implement event handler
+    on<GameSelectLevel>((event, emit) async {
+      emit(GameStarted(
+          event.level,
+          await articleRepository.getArticles(event.level),
+          const [],
+          state.levels));
     });
   }
 }

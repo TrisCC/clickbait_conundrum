@@ -5,6 +5,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 import 'bloc/game_bloc.dart';
 import 'data/article_repository.dart';
+import 'models/models.dart';
 
 void main() {
   runApp(const MyApp());
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: (context) {
         switch (_selectedTab) {
           case 0:
-            return LevelSelectionTab();
+            return const LevelSelectionTab();
           case 1:
             return DetectTab();
           case 2:
@@ -121,19 +122,32 @@ class LevelSelectionTab extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is GameInitial) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
 
         return Container(
           child: GridView.builder(
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4),
               itemCount: state.levels.length,
               itemBuilder: (context, index) {
                 return Card(
-                  child: Text(state.levels[index].levelNumber.toString()),
+                  elevation: 2,
+                  child: InkWell(
+                    onTap: () => BlocProvider.of<GameBloc>(context).add(
+                        GameSelectLevel(Level(state.levels[index].percentage,
+                            state.levels[index].levelNumber))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('${state.levels[index].percentage}% fake'),
+                        Text(state.levels[index].levelNumber.toString()),
+                      ],
+                    ),
+                  ),
                 );
               }),
         );

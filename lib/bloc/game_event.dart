@@ -6,8 +6,7 @@ abstract class GameEvent {}
 class GameInitialized extends GameEvent {}
 
 class GameSelectLevel extends GameEvent {
-  final int selectedPercentage;
-  final int selectedLevelNumber;
+  final Level level;
 
-  GameSelectLevel(this.selectedPercentage, this.selectedLevelNumber);
+  GameSelectLevel(this.level);
 }
