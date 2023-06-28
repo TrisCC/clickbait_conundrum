@@ -14,8 +14,40 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.light,
+        useMaterial3: true,
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: Colors.black,
+          onPrimary: Colors.white,
+          secondary: Colors.white,
+          onSecondary: Colors.black,
+          error: Colors.red,
+          onError: Colors.white,
+          background: Colors.white,
+          onBackground: Colors.black,
+          surface: Colors.white,
+          onSurface: Colors.black,
+        ),
       ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        useMaterial3: true,
+        colorScheme: const ColorScheme(
+          brightness: Brightness.dark,
+          primary: Colors.white,
+          onPrimary: Colors.black,
+          secondary: Colors.black,
+          onSecondary: Colors.white,
+          error: Colors.red,
+          onError: Colors.black,
+          background: Colors.black,
+          onBackground: Colors.white,
+          surface: Colors.black,
+          onSurface: Colors.white,
+        ),
+      ),
+      themeMode: ThemeMode.system,
       home: const MyHomePage(),
     );
   }
