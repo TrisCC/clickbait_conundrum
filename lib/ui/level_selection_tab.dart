@@ -35,7 +35,8 @@ class LevelSelectionTab extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('${state.levels[index].percentage}% fake'),
-                      Text(state.levels[index].levelNumber.toString()),
+                      Text(
+                          'Level ${state.levels[index].levelNumber.toString()}'),
                     ],
                   ),
                 ),

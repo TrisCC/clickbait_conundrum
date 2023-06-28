@@ -18,7 +18,7 @@ class Article {
 
     List<Article> articles = [];
 
-    for (int i = 1; i < rawList.length - 1; i++) {
+    for (int i = 1; i < rawList.length; i++) {
       articles.add(Article(rawList[i][0], rawList[i][1], rawList[i][2], null,
           null, null, rawList[i][3] == 0));
     }

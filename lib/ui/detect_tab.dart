@@ -27,20 +27,38 @@ class DetectTab extends StatelessWidget {
         }
 
         if (state is GameStarted) {
-          return Stack(
+          return Column(
             children: [
-              const Center(
-                child: Text('No more articles!'),
+              Expanded(
+                child: Stack(
+                  children: [
+                    const Center(
+                      child: Text('No more articles!'),
+                    ),
+                    SafeArea(
+                      child: CardSwiper(
+                          isLoop: false,
+                          cardBuilder: (context, index, percentThresholdX,
+                              percentThresholdY) {
+                            return ArticleCard(
+                                article: state.articleList[index]);
+                          },
+                          cardsCount: state.articleList.length),
+                    )
+                  ],
+                ),
               ),
-              SafeArea(
-                child: CardSwiper(
-                    isLoop: false,
-                    cardBuilder:
-                        (context, index, percentThresholdX, percentThresholdY) {
-                      return ArticleCard(article: state.articleList[index]);
-                    },
-                    cardsCount: state.articleList.length),
-              )
+              GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 10),
+                  itemCount: state.articleList.length,
+                  itemBuilder: (context, index) {
+                    return const Center(
+                      child: Icon(Icons.done),
+                    );
+                  })
             ],
           );
         }
@@ -80,7 +98,6 @@ class ArticleCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.indigo,
                     minimumSize: const Size.fromHeight(50), // NEW
                   ),
                   onPressed: () {},
