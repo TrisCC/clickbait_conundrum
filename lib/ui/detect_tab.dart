@@ -111,7 +111,7 @@ class DetectTab extends StatelessWidget {
                           initialIndex: state.articleIsRealList.length <
                                   state.articleList.length
                               ? state.articleIsRealList.length
-                              : state.articleIsRealList.length - 1,
+                              : state.articleList.length - 1,
                           controller: cardSwiperController,
                           isLoop: false,
                           cardBuilder: (context, index, percentThresholdX,
@@ -165,61 +165,65 @@ class ArticleCard extends StatelessWidget {
       elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(children: [
-          Text(
-            article.title,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          Expanded(
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Text(
-                  article.text,
-                  overflow: TextOverflow.fade,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () => cardSwiperController.swipeLeft(),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red),
-                        child: const Text(
-                          'Fake',
-                          style: TextStyle(color: Colors.white),
-                        )),
-                    Expanded(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50), // NEW
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    FullArticleScreen(article: article)),
-                          );
-                        },
-                        child: const Text('Read full article'),
-                      ),
+        child: Expanded(
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    article.title,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Expanded(
+                    child: Text(
+                      article.text,
+                      overflow: TextOverflow.fade,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    ElevatedButton(
-                        onPressed: () => cardSwiperController.swipeRight(),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green),
-                        child: const Text(
-                          'Real',
-                          style: TextStyle(color: Colors.white),
-                        )),
-                  ],
-                )
-              ],
-            ),
-          )
-        ]),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ElevatedButton(
+                      onPressed: () => cardSwiperController.swipeLeft(),
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                      child: const Text(
+                        'Fake',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50), // NEW
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  FullArticleScreen(article: article)),
+                        );
+                      },
+                      child: const Text('Read full article'),
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () => cardSwiperController.swipeRight(),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green),
+                      child: const Text(
+                        'Real',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

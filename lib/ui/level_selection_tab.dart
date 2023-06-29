@@ -29,8 +29,8 @@ class LevelSelectionTab extends StatelessWidget {
               Expanded(
                 child: GridView.builder(
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4),
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 256),
                     itemCount: state.levels.length,
                     itemBuilder: (context, index) {
                       return Card(
