@@ -1,5 +1,5 @@
-import 'package:clickbait_conondrum/models/models.dart';
-import 'package:clickbait_conondrum/ui/full_article_screen.dart';
+import 'package:clickbait_conundrum/models/models.dart';
+import 'package:clickbait_conundrum/ui/full_article_screen.dart';
 import 'package:flutter/material.dart';
 
 class ResultsScreen extends StatelessWidget {

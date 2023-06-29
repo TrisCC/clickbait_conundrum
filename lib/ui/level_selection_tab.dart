@@ -1,5 +1,5 @@
-import 'package:clickbait_conondrum/bloc/game_bloc.dart';
-import 'package:clickbait_conondrum/models/models.dart';
+import 'package:clickbait_conundrum/bloc/game_bloc.dart';
+import 'package:clickbait_conundrum/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

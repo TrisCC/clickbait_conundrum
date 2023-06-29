@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tinstarproductions.clickbaitconondrum.clickbait_conondrum">
+    package="com.tinstarproductions.clickbaitconundrum.clickbait_conundrum">
    <application
         android:label="Clickbait Conundrum"
         android:name="${applicationName}"

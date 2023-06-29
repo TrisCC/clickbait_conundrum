@@ -1,7 +1,7 @@
-import 'package:clickbait_conondrum/bloc/game_bloc.dart';
-import 'package:clickbait_conondrum/models/article.dart';
-import 'package:clickbait_conondrum/ui/full_article_screen.dart';
-import 'package:clickbait_conondrum/ui/results_screen.dart';
+import 'package:clickbait_conundrum/bloc/game_bloc.dart';
+import 'package:clickbait_conundrum/models/article.dart';
+import 'package:clickbait_conundrum/ui/full_article_screen.dart';
+import 'package:clickbait_conundrum/ui/results_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';

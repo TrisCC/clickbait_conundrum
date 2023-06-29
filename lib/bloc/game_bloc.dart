@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:clickbait_conondrum/data/article_repository.dart';
-import 'package:clickbait_conondrum/main.dart';
-import 'package:clickbait_conondrum/models/models.dart';
+import 'package:clickbait_conundrum/data/article_repository.dart';
+import 'package:clickbait_conundrum/main.dart';
+import 'package:clickbait_conundrum/models/models.dart';
 import 'package:logger/logger.dart';
 import 'package:meta/meta.dart';
 
@@ -11,7 +11,7 @@ part 'game_state.dart';
 class GameBloc extends Bloc<GameEvent, GameState> {
   final ArticleRepository articleRepository;
 
-  Logger logger = ClickbaitConondrum.logger;
+  Logger logger = ClickbaitConundrum.logger;
   static const String tag = '[GameBloc]';
 
   GameBloc(this.articleRepository) : super(GameInitial()) {

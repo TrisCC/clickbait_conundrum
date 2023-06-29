@@ -1,6 +1,6 @@
-import 'package:clickbait_conondrum/ui/about_tab.dart';
-import 'package:clickbait_conondrum/ui/detect_tab.dart';
-import 'package:clickbait_conondrum/ui/level_selection_tab.dart';
+import 'package:clickbait_conundrum/ui/about_tab.dart';
+import 'package:clickbait_conundrum/ui/detect_tab.dart';
+import 'package:clickbait_conundrum/ui/level_selection_tab.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

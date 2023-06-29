@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/clickbait_conondrum.iml" filepath="$PROJECT_DIR$/clickbait_conondrum.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/clickbait_conondrum_android.iml" filepath="$PROJECT_DIR$/android/clickbait_conondrum_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clickbait_conundrum.iml" filepath="$PROJECT_DIR$/clickbait_conundrum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/clickbait_conundrum_android.iml" filepath="$PROJECT_DIR$/android/clickbait_conundrum_android.iml" />
     </modules>
   </component>
 </project>

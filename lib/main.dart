@@ -1,4 +1,4 @@
-import 'package:clickbait_conondrum/ui/home_screen.dart';
+import 'package:clickbait_conundrum/ui/home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,11 +18,11 @@ void main() async {
         : await getApplicationDocumentsDirectory(),
   );
 
-  runApp(const ClickbaitConondrum());
+  runApp(const ClickbaitConundrum());
 }
 
-class ClickbaitConondrum extends StatelessWidget {
-  const ClickbaitConondrum({super.key});
+class ClickbaitConundrum extends StatelessWidget {
+  const ClickbaitConundrum({super.key});
 
   static Logger logger = Logger();
 

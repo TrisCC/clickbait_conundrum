@@ -1,4 +1,4 @@
-import 'package:clickbait_conondrum/models/article.dart';
+import 'package:clickbait_conundrum/models/article.dart';
 import 'package:flutter/material.dart';
 
 class FullArticleScreen extends StatelessWidget {

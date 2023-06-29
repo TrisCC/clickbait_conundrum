@@ -1,4 +1,4 @@
-import 'package:clickbait_conondrum/bloc/theme_bloc.dart';
+import 'package:clickbait_conundrum/bloc/theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

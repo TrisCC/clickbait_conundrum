@@ -1,4 +1,4 @@
-package com.tinstarproductions.clickbaitconondrum.clickbait_conondrum
+package com.tinstarproductions.clickbaitconundrum
 
 import io.flutter.embedding.android.FlutterActivity
 
