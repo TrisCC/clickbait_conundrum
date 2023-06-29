@@ -33,7 +33,7 @@ class ClickbaitConondrum extends StatelessWidget {
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp(
-            title: 'Clickbait Conondrum',
+            title: 'Clickbait Conundrum',
             theme: ThemeData(
               brightness: Brightness.light,
               useMaterial3: true,
