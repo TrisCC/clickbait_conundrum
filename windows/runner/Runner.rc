@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.tinstarproductions.clickbaitconondrum" "\0"
-            VALUE "FileDescription", "clickbait_conondrum" "\0"
+            VALUE "FileDescription", "Clickbait Conundrum" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "clickbait_conondrum" "\0"
+            VALUE "InternalName", "Clickbait Conundrum" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.tinstarproductions.clickbaitconondrum. All rights reserved." "\0"
             VALUE "OriginalFilename", "clickbait_conondrum.exe" "\0"
-            VALUE "ProductName", "clickbait_conondrum" "\0"
+            VALUE "ProductName", "Clickbait Conundrum" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
