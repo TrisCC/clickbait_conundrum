@@ -6,10 +6,6 @@ part 'theme_state.dart';
 
 class ThemeBloc extends HydratedBloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(const ThemeInitial()) {
-    on<ThemeInitialized>((event, emit) {
-      emit(const ThemeInitial());
-    });
-
     on<ThemeSelection>((event, emit) {
       emit(ThemeSelected(event.themeMode));
     });
