@@ -10,7 +10,6 @@ def main():
     
     with open('./assets/data/WELFake_Dataset.csv', encoding="utf8") as csvfile:
         reader = csv.reader(csvfile)
-        # i = 0
         
         fake_articles = []
         real_articles = []
@@ -18,10 +17,6 @@ def main():
         next(reader)
         
         for row in reader:
-            # print(row)
-            # i = i + 1
-            # if i > 5: break
-            
             if row[3] == '0':
                 fake_articles.append(row)
             if row[3] == '1':
