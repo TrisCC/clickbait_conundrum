@@ -1,1 +1,2 @@
-# clickbait-conundrum
+# Clickbait Conundrum
+This project is part of my final project for the Exploring the Past in the Digital Present course of the Digital Humanities Minor at the Leiden University. It is a simple little game in which the player is supposed to pick out which news articles are fake and which are news articles are real. This is harder than it sounds! The game has been written with Dart in combination with the Flutter framework. A working version of the game can be found on my [GitHub.io](https://triscc.github.io/clickbait_conundrum/) page.
